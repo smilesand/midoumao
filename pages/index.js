@@ -4,47 +4,27 @@ import { getPosts } from '../utils/mdx-utils';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
-import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
+import Image from 'next/image';
 
 export default function Index({ posts, globalData }) {
   return (
     <Layout>
-      <SEO title={globalData.name} description={globalData.blogTitle} />
+      <SEO title={globalData.name} description={globalData.description} />
       <Header name={globalData.name} />
       <main className="w-full">
+        <div className="flex justify-center my-8"> {/* 添加一个容器并设置居中 */}
+          <Image src="/images/logo.png" width={226} height={433} alt='logo' priority />
+        </div>
+        <p className="text-2xl text-center dark:text-white">
+          <Link href="/">
+            {globalData.name}
+          </Link>
+        </p>
         <h1 className="mb-12 text-3xl text-center lg:text-5xl">
           {globalData.blogTitle}
         </h1>
-        <ul className="w-full">
-          {posts.map((post) => (
-            <li
-              key={post.filePath}
-              className="transition bg-white border border-b-0 border-gray-800 md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-b hover:border-b hovered-sibling:border-t-0" data-sb-object-id={`posts/${post.filePath}`}
-            >
-              <Link
-                as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                href={`/posts/[slug]`}
-                className="block px-6 py-6 lg:py-10 lg:px-16 focus:outline-none focus:ring-4">
-
-                {post.data.date && (
-                  <p className="mb-3 font-bold uppercase opacity-60" data-sb-field-path="date">
-                    {post.data.date}
-                  </p>
-                )}
-                <h2 className="text-2xl md:text-3xl" data-sb-field-path="title">{post.data.title}</h2>
-                {post.data.description && (
-                  <p className="mt-3 text-lg opacity-60" data-sb-field-path="description">
-                    {post.data.description}
-                  </p>
-                )}
-                <ArrowIcon className="mt-4" />
-
-              </Link>
-            </li>
-          ))}
-        </ul>
       </main>
       <Footer copyrightText={globalData.footerText} />
       <GradientBackground
