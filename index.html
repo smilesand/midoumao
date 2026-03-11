@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>midoumao</title>
+  <meta name="description" content="The personal space of midoumao — creator, animal lover, and digital wanderer." />
+
+  <!-- SEO: cross-property linking -->
+  <link rel="me" href="https://everpaw.pet" />
+  <link rel="me" href="https://petfooddiy.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="midoumao" />
+  <meta property="og:description" content="Creator, animal lover, digital wanderer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://midoumao.com" />
+  <link rel="canonical" href="https://midoumao.com" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ──────────────────────────────────────────────── */
+    :root {
+      --bg:         #FAFAF9;
+      --text:       #111110;
+      --muted:      #6F6860;
+      --accent:     #A67C52;
+      --line:       #E4DDD5;
+      --card-bg:    #F5F1EC;
+      --card-hover: #EDE9E3;
+
+      /* Gold thread palette */
+      --gold-deep:  #7A5A1A;
+      --gold-mid:   #C9A84C;
+      --gold-light: #F0D485;
+      --gold-grad:  linear-gradient(105deg, #7A5A1A 0%, #C9A84C 22%, #F0D485 45%, #D4AE55 55%, #C9A84C 68%, #A67C52 82%, #7A5A1A 100%);
+
+      --font-logo:  'Dancing Script', cursive;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      /* Very subtle woven linen texture */
+      background-image:
+        repeating-linear-gradient( 45deg, rgba(166,124,82,0.018) 0px, rgba(166,124,82,0.018) 1px, transparent 1px, transparent 9px),
+        repeating-linear-gradient(-45deg, rgba(166,124,82,0.018) 0px, rgba(166,124,82,0.018) 1px, transparent 1px, transparent 9px);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    strong { font-weight: 500; }
+
+    /* ── Layout ──────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100dvh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-logo {
+      font-family: var(--font-logo);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      background: var(--gold-grad);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: goldShimmer 5s linear infinite;
+    }
+
+    .hero-rule {
+      position: relative;
+      width: 140px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold-mid) 25%, var(--gold-light) 50%, var(--gold-mid) 75%, transparent 100%);
+      margin: 0.6rem 0;
+    }
+    .hero-rule::before,
+    .hero-rule::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 5px; height: 5px;
+      transform: translateY(-50%) rotate(45deg);
+      background: var(--gold-mid);
+      opacity: 0.6;
+    }
+    .hero-rule::before { left: -2px; }
+    .hero-rule::after  { right: -2px; }
+
+    .hero-tagline {
+      font-family: var(--font-serif);
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-filigree {
+      width: 200px;
+      height: 20px;
+      animation: filigreeBreath 4s ease-in-out infinite;
+    }
+    @keyframes filigreeBreath {
+      0%, 100% { opacity: 0.38; }
+      50%       { opacity: 0.65; }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-scroll span {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold-mid), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    @keyframes goldShimmer {
+      0%   { background-position: 0%   center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ── Sections ────────────────────────────────────────────── */
+    .section { padding: 6rem 0; }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-mid), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    /* ── Divider ──────────────────────────────────────────────── */
+    .divider {
+      position: relative;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line) 15%, var(--gold-mid) 50%, var(--line) 85%, transparent);
+    }
+    .divider::after {
+      content: '\25C6';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 7px;
+      color: var(--gold-mid);
+      opacity: 0.6;
+      background: var(--bg);
+      padding: 0 10px;
+      line-height: 1;
+    }
+
+    /* ── About ───────────────────────────────────────────────── */
+    .about-text {
+      max-width: 640px;
+      position: relative;
+    }
+    .about-text::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(201,168,76,0.25) 15%,
+        rgba(240,212,133,0.45) 50%,
+        rgba(201,168,76,0.25) 85%,
+        transparent
+      );
+    }
+
+    .about-lead {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.975rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p.about-lead { color: var(--text); }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── Sites Grid ──────────────────────────────────────────── */
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .site-card {
+      display: block;
+      position: relative;
+      background-color: var(--card-bg);
+      /* Fine woven silk texture on cards */
+      background-image:
+        repeating-linear-gradient(  0deg, transparent, transparent 3px, rgba(166,124,82,0.05) 3px, rgba(166,124,82,0.05) 4px),
+        repeating-linear-gradient( 90deg, transparent, transparent 3px, rgba(166,124,82,0.05) 3px, rgba(166,124,82,0.05) 4px);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--line);
+      border-radius: 1px;
+      padding: 1.75rem 2rem;
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+    /* Gold L-bracket corner flourishes, revealed on hover */
+    .site-card::before,
+    .site-card::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      pointer-events: none;
+      transition: border-color 0.35s ease;
+    }
+    .site-card::before {
+      top: 9px; right: 9px;
+      border-top:   1px solid transparent;
+      border-right: 1px solid transparent;
+    }
+    .site-card::after {
+      bottom: 9px; left: 9px;
+      border-bottom: 1px solid transparent;
+      border-left:   1px solid transparent;
+    }
+    .site-card:hover::before {
+      border-top-color:   rgba(201,168,76,0.5);
+      border-right-color: rgba(201,168,76,0.5);
+    }
+    .site-card:hover::after {
+      border-bottom-color: rgba(201,168,76,0.5);
+      border-left-color:   rgba(201,168,76,0.5);
+    }
+
+    .site-card:hover {
+      background-color: var(--card-hover);
+      border-left-color: var(--gold-mid);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(201,168,76,0.12);
+    }
+
+    .site-card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      height: 100%;
+    }
+
+    .site-domain {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .site-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .site-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-top: 0.2rem;
+    }
+
+    .site-arrow {
+      display: inline-block;
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-top: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .site-card:hover .site-arrow { transform: translateX(5px); }
+
+    /* ── Contact ─────────────────────────────────────────────── */
+    .contact-inner {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .contact-text {
+      font-size: 0.975rem;
+      color: var(--muted);
+      max-width: 400px;
+      margin-bottom: 2.25rem;
+    }
+
+    .contact-email {
+      font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold-deep)  15%,
+        var(--gold-mid)   35%,
+        var(--gold-light) 50%,
+        var(--gold-mid)   65%,
+        var(--gold-deep)  85%,
+        transparent
+      );
+      opacity: 0.75;
+      transition: opacity 0.25s ease;
+    }
+    .contact-email:hover { color: var(--accent); }
+    .contact-email:hover::after { opacity: 1; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      padding: 2.5rem 0;
+      position: relative;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--line)       8%,
+        var(--gold-mid)  28%,
+        var(--gold-light) 50%,
+        var(--gold-mid)  72%,
+        var(--line)      92%,
+        transparent
+      );
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-logo);
+      font-size: 1.45rem;
+      font-weight: 600;
+      background: linear-gradient(105deg, var(--gold-deep) 0%, var(--gold-mid) 40%, var(--gold-light) 60%, var(--gold-mid) 80%, var(--gold-deep) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .section { padding: 4rem 0; }
+      .sites-grid { grid-template-columns: 1fr; }
+      .footer-inner { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">welcome</p>
+        <h1 class="hero-logo">midoumao</h1>
+        <div class="hero-rule"></div>
+        <p class="hero-tagline">
+          creator &nbsp;·&nbsp; animal lover &nbsp;·&nbsp; digital wanderer
+        </p>
+        <!-- Delicate SVG filigree scroll ornament -->
+        <svg class="hero-filigree" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#7A5A1A" stop-opacity="0"/>
+              <stop offset="20%"  stop-color="#C9A84C" stop-opacity="1"/>
+              <stop offset="50%"  stop-color="#F0D485" stop-opacity="1"/>
+              <stop offset="80%"  stop-color="#C9A84C" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#7A5A1A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Left scroll wing -->
+          <path d="M14,10 C22,3 30,17 42,10 C54,3 62,17 76,10 C83,5 88,10 91,10"
+                stroke="url(#fg)" stroke-width="0.85" stroke-linecap="round"/>
+          <circle cx="14" cy="10" r="2" fill="#C9A84C" opacity="0.5"/>
+          <!-- Centre diamond -->
+          <path d="M100,3 L107,10 L100,17 L93,10 Z" fill="url(#fg)" opacity="0.7"/>
+          <!-- Right scroll wing (mirrored) -->
+          <path d="M186,10 C178,3 170,17 158,10 C146,3 138,17 124,10 C117,5 112,10 109,10"
+                stroke="url(#fg)" stroke-width="0.85" stroke-linecap="round"/>
+          <circle cx="186" cy="10" r="2" fill="#C9A84C" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <span>scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about-section">
+      <div class="container">
+        <div class="section-label">about</div>
+        <div class="about-text">
+          <p class="about-lead">
+            I am the creator behind <em>midoumao</em> — drawn to the quiet
+            beauty of everyday life, the warmth of animals, and the slow,
+            deliberate craft of making things worth keeping.
+          </p>
+          <p>
+            By nature, I am calm and observant. I prefer depth over noise,
+            and meaning over volume. Whether I am writing a piece about a
+            cat's morning ritual, perfecting a hand-crafted pet food recipe,
+            or following a thread of curiosity to its end — I move with intention.
+          </p>
+          <p>
+            My world is shaped by three things:
+            <strong>animals</strong>, who teach me patience;
+            <strong>words</strong>, which give shape to feeling; and
+            <strong>the internet</strong>, which I still believe can be a
+            place of genuine connection and quiet discovery.
+          </p>
+          <p>
+            I build slowly, but I build with care. These are the places
+            that carry that care.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Sites -->
+    <section class="section sites-section">
+      <div class="container">
+        <div class="section-label">my world</div>
+        <h2 class="section-title">Across the Internet</h2>
+        <p class="section-subtitle">
+          Each of these places is a different facet of the same life —
+          explore whichever calls to you.
+        </p>
+        <div class="sites-grid">
+
+          <a href="https://everpaw.pet" target="_blank" rel="noopener noreferrer"
+             class="site-card" title="Visit EverPaw">
+            <div class="site-card-inner">
+              <p class="site-domain">everpaw.pet</p>
+              <h3 class="site-name">EverPaw</h3>
+              <p class="site-desc">A tender space devoted to pets and the quiet art of caring for the animals who share our lives.</p>
+              <span class="site-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="https://petfooddiy.com" target="_blank" rel="noopener noreferrer"
+             class="site-card" title="Visit Pet Food DIY">
+            <div class="site-card-inner">
+              <p class="site-domain">petfooddiy.com</p>
+              <h3 class="site-name">Pet Food DIY</h3>
+              <p class="site-desc">Handcrafted recipes and honest nutrition wisdom for the pets you love most.</p>
+              <span class="site-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <!-- Contact -->
+    <section class="section">
+      <div class="container contact-inner">
+        <div class="section-label">contact</div>
+        <h2 class="contact-title">Say Hello</h2>
+        <p class="contact-text">
+          I welcome thoughtful conversations — about animals, ideas,
+          collaborations, or anything in between.
+        </p>
+        <a href="mailto:hello@midoumao.com" class="contact-email">
+          hello@midoumao.com
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">midoumao</span>
+      <span class="footer-copy">
+        &copy; <span id="year"></span> &nbsp;·&nbsp; All rights reserved
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
